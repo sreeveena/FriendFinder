@@ -9,16 +9,17 @@ module.exports = function (app) {
         var currentTotalScore = 0;
         var bestFriendIndex = 1;
         for(j=0; j< friendData.length; j++){
-            for(i=1; i<11; i++){
+            for(i=0; i<10; i++){
                 currentTotalScore += Math.abs((parseInt(friendData[j].scores[i]) - parseInt(newFriend.scores[i])));
             }
             if(currentTotalScore < totalScore){
                 totalScore = currentTotalScore;
-                bestFriendIndex = i;
+                bestFriendIndex = j;
+                console.log("inside if"+ bestFriendIndex);
             }
+            currentTotalScore = 0;
         }
-        
-		friendData.push(newFriend);
+        friendData.push(newFriend);
 		res.json(friendData[bestFriendIndex]);
 	})
 }
