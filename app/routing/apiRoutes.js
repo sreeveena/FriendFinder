@@ -15,7 +15,6 @@ module.exports = function (app) {
             if(currentTotalScore < totalScore){
                 totalScore = currentTotalScore;
                 bestFriendIndex = j;
-                console.log("inside if"+ bestFriendIndex);
             }
             currentTotalScore = 0;
         }

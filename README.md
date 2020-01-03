@@ -43,8 +43,8 @@ main logic for calculating the score for user with the existing people in the da
         friendData.push(newFriend);
 		res.json(friendData[bestFriendIndex]);
 
-[!gif]()
-[!gif]()
+![gif](./friend.gif)
+
 
 
 
