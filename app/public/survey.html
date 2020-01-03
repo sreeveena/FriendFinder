@@ -155,9 +155,69 @@
     <hr>
     <footer class="footer">
       <div class="container">
-        <p><a href="/data/friends">API Friends List</a> | <a href="">GitHub Repo</a></p>
+        <p><a href="/api/friends">API Friends List</a> | <a href="">GitHub Repo</a></p>
       </div>
     </footer>
   </div>
+  <!-- Modal -->
+  <div id="results-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+    
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h2 class="modal-title"><strong>Best Match</strong></h2>
+            </div>
+            <div class="modal-body">
+              <h2 id="match-name"></h2>
+              <img id="match-img" src="https://www.sciencemag.org/news/2019/11/here-s-better-way-convert-dog-years-human-years-scientists-say" alt="">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+    
+        </div>
+     </div>
+  <script  type="text/javascript">
+  $("#submit").on("click",function(res){
+    res.preventDefault();
+    for (var i= 1; i<=10; i++){
+        if($("#q"+i).value == ""){
+            alert("please select an option for question "+ i);
+            return;
+        }
+    }
+    var surveyData = {
+          name: $("#name").val(),
+          photo: $("#photo").val(),
+          scores: [
+            $("#q1").val(),
+            $("#q2").val(),
+            $("#q3").val(),
+            $("#q4").val(),
+            $("#q5").val(),
+            $("#q6").val(),
+            $("#q7").val(),
+            $("#q8").val(),
+            $("#q9").val(),
+            $("#q10").val()
+          ]
+        };
+
+    $.post("/api/friends", surveyData, function(data) {
+
+        $("#match-name").text(data.name);
+        $("#match-img").attr("src", data.photo);
+
+        // Show the modal with the best match
+        $("#results-modal").modal("toggle");
+
+    });
+
+  });
+
+  </script>
 </body>
 </html>
